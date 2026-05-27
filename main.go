@@ -3,14 +3,20 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+	"path/filepath"
 	"todo/task"
 	"todo/utils"
 )
 
 func main() {
+	exePath, _ := os.Executable()
+
+	defaultCSVPath := filepath.Join(filepath.Dir(exePath), "todo.csv")
+
 	addTask := flag.String("add", "", "Add task")
 	removeTasks := flag.String("del", "", "Remove task by ID")
-	csvPath := flag.String("path", "todo.csv", "Save path file")
+	csvPath := flag.String("path", defaultCSVPath, "Save path file")
 
 	flag.Parse()
 
